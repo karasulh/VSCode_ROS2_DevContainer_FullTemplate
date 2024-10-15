@@ -1,0 +1,4 @@
+If you are using Apple Silicon, and trying to debug ROS2 nodes:
+Gdb debugger gives error: Couldn't get registers: Input/output error.
+The Solution is here:
+https://github.com/microsoft/vscode-cpptools/issues/10788

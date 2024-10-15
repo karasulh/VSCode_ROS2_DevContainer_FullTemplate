@@ -1,0 +1,84 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+    // launch of a python file
+    {
+      "name": "ROS: Launch",
+      "type": "ros",
+      "request": "launch",
+      //"preLaunchTask": "colcon: build",
+      "target": "/home/ros2user/ros2_ws/src/pubsubint/launch/pubsubint_launch.py",
+    },
+    // gdb launch of a ros2 executable
+    {
+      "name": "C++ ROS2 pubsubint Package Debug",
+      "request": "launch",
+      "type": "cppdbg",
+      //"miDebuggerServerAddress": "localhost:3000",
+      "cwd": "/",
+      "program": "/home/ros2user/ros2_ws/build/pubsubint/pubsubint_node",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdbus"
+    },
+    //Detailed gdb launch of a ros2 executable
+    {
+      "name": "GDP: launch executable",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/home/ros2user/ros2_ws/build/pubsubint/pubsubint_node",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "preLaunchTask": "colcon: build (debug)",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    //Detailed general gdb launch of a ros2 executable
+    {
+      "name": "GDP: launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "enter program name, for example, ${workspaceFolder}/../build/path_to_executable",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "preLaunchTask": "add your build task here. e.g. colcon: build",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    },
+
+    {
+      "name": "ROS: Attach",
+      "type": "ros",
+      "request": "attach"
+    },
+
+  ]
+}

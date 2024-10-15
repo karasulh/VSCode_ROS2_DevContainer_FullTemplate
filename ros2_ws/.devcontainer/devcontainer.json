@@ -1,0 +1,67 @@
+{
+    "name": "ROS 2 Development Container",
+    "privileged": true,
+    "remoteUser": "ros2user",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "USERNAME": "ros2user"
+        }
+    },
+    "workspaceFolder": "/home/ros2user/ros2_ws",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros2user/ros2_ws,type=bind",
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros",
+                "vadimcn.vscode-lldb",
+                "fill-labs.dependi",
+                "tamasfe.even-better-toml",
+                "rust-lang.rust-analyzer",
+                "ms-vscode.cpptools-extension-pack",
+                "formulahendry.code-runner",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.live-server",
+                "ms-vscode-remote.vscode-remote-extensionpack"
+            ],
+            "settings": {
+                "files.associations": {
+                    "*.rviz": "yaml",
+                    "*.srdf": "xml",
+                    "*.urdf": "xml",
+                    "*.xacro": "xml"
+                }
+            }
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "novnc:0", //novnc:0 //For easy usage in your MacOS host, use 'novnc' container
+        //"DISPLAY": "host.docker.internal:0", //For easy usage in your Windows host
+        //"ROS_LOCALHOST_ONLY": "1", //Optional:If you want to use ROS2 only in your localhost
+        //"ROS_DOMAIN_ID": "42" //Optional:If you want to use ROS2 only in this domain
+        //"LIBGL_ALWAYS_INDIRECT": "1",  //the solution of "failed to load driver swrast"
+        //"LIBGL_ALWAYS_SOFTWARE": "1"  // Needed for software rendering of opengl  
+    },
+    "runArgs": [
+        "--net=host",
+        "--pid=host",
+        "--ipc=host",
+        "-e", "DISPLAY=novnc:0", //For easy usage in your MacOS host, use 'novnc' container
+        //"-e", "DISPLAY=host.docker.internal:0", //For easy usage in your Windows host
+        "--name","ros2humblefull" //container name
+    ],
+    "forwardPorts": [
+        8765,
+        9090
+    ],
+    "mounts": [
+        //"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached", //for Linux host
+        //"source=/dev/dri,target=/dev/dri,type=bind,consistency=cached" //for Linux host
+    ],
+    "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ros2user/ros2_ws/"
+}

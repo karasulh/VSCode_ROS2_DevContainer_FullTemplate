@@ -1,0 +1,27 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "files.associations": {
+        "*.rviz": "yaml",
+        "*.srdf": "xml",
+        "*.urdf": "xml",
+        "*.xacro": "xml",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "chrono": "cpp",
+        "memory": "cpp"
+    },
+    "cmake.buildDirectory": "/home/ros2user/ros2_ws/build",
+    "cmake.ignoreCMakeListsMissing": true,
+    "ros.distro": "humble",
+	"ros.isolateEnvironment": true,
+	"ros.rosSetupScript": "/opt/ros/humble/setup.bash"
+}
